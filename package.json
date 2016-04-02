@@ -1,0 +1,27 @@
+{
+  "name": "secure",
+  "version": "0.0.0",
+  "description": "Watchdog, which periodically checks given list of urls and searchs for required content.",
+  "main": "index.js",
+  "dependencies": {
+    "async-polling": "~0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AliKamil/watchdog.git"
+  },
+  "keywords": [
+    "watchdog",
+    "nodejs",
+    "monitoring"
+  ],
+  "author": "Arthur Dombrovskii",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/AliKamil/watchdog/issues"
+  }
+}
