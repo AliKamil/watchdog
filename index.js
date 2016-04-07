@@ -5,7 +5,7 @@ var pool = require('./pool.js');
 var logger = require('./logger.js');
 var checker = require('./worker.js');
 var http = require('http');
-var client = require('./redisClient.js');
+var client = require('redis').createClient();
 var settings = settingsManager.getSettings();
 
 pool.init(checker);

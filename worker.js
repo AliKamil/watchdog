@@ -5,7 +5,7 @@ var Url = require('url');
 var logger = require('./logger.js');
 var XRegExp = require('xregexp');
 var querystring = require('querystring');
-var client = require('./redisClient');
+var client = require('redis').createClient();
 
 var worker = function () {
 };
