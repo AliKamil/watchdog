@@ -1,0 +1,72 @@
+probe-interval: 10000
+pages:
+  - url: http://www.google.pl
+    patterns:
+      # Regex with special characters
+      - <body
+      - </html>
+      - '"csi"'
+      - window\._\._
+  - url: http://www.google.pl
+    patterns:
+      # More complex regex
+      - '#\d\d\d'
+      - 'function\(\)\{.*\}'
+  - url: https://en.wikipedia.org/wiki/Python_(programming_language)
+    patterns:
+      - spam
+      - eggs
+  - url: https://en.wikipedia.org/wiki/Python_(programming_language)
+    patterns:
+      # This page does not contain all these patterns
+      - ham
+      - spam
+      - eggs
+      - hammers
+  - url: http://en.wikipedia.org/null
+    # Should result in 404 error
+    patterns:
+      - test
+  - url: http://en.wikipedia.org
+    # Should result in 301 redirect
+    patterns:
+      - test
+  - url: https://sv.wikipedia.org/wiki/Portal:Huvudsida
+    # An empty list of patterns
+    patterns: []
+  - url: https://sv.wikipedia.org/wiki/Nagoya
+    # HTTPS example
+    patterns:
+      - Nagoya
+  - url: https://sv.wikipedia.org/wiki/Leoš_Janáček
+    # UTF-8 example
+    patterns:
+      - Leoš Janáček
+      - Sånger
+      - Körmusik
+      - Källor
+  - url: https://it.wikipedia.org/wiki/Fær_Øer
+    # Another UTF-8 example
+    patterns:
+      - Borðoy
+      - Færøerne
+  - url: http://sv.wikipedia.org/wiki/Eid_al-fitr#Sverige
+    # URL with fragment
+    patterns:
+      - Sverige
+  - url: https://sv.wikipedia.org/w/index.php?title=Eid_al-fitr&action=edit
+    # URL with query
+    patterns:
+      - Sverige
+  - url: http://➡.ws/♥
+    # URL with IDN
+    patterns:
+      - link
+  - url: http://例子.测试/首页
+    # URL with IDN (without redirect)
+    patterns:
+      - 首页
+  - url: http://www.xkcd.jam
+    patterns:
+      - 首页
+

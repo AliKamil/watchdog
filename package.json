@@ -4,7 +4,18 @@
   "description": "Watchdog, which periodically checks given list of urls and searchs for required content.",
   "main": "index.js",
   "dependencies": {
-    "async-polling": "~0.2.1"
+    "async": "^2.0.0-rc.2",
+    "async-polling": "~0.2.1",
+    "colors": "^1.1.2",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "js-yaml": "^3.5.5",
+    "querystring": "^0.2.0",
+    "redis": "^2.6.0-1",
+    "url": "^0.11.0",
+    "urlparse": "0.0.1",
+    "utils": "~0.3.1",
+    "xregexp": "^3.1.0"
   },
   "devDependencies": {},
   "scripts": {
