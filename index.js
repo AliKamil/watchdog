@@ -1,12 +1,14 @@
-var settingsManager = require('./settings.js');
+var settingsManager = require('./lib/settings.js');
 var asyncPolling = require('async-polling');
 var async = require('async');
-var pool = require('./pool.js');
+var pool = require('./lib/pool.js');
 var logger = require('mag')();
-var checker = require('./worker.js');
+var checker = require('./lib/worker.js');
 var http = require('http');
 var client = require('redis').createClient();
-var settings = settingsManager.getSettings();
+
+
+var settings = settingsManager.getSettings('example/config.yml');
 
 pool.init(checker);
 
