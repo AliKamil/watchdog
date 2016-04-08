@@ -2,7 +2,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 var http = require('http');
 var https = require('https');
 var Url = require('url');
-var logger = require('./logger.js');
+var logger = require('mag')();
 var XRegExp = require('xregexp');
 var querystring = require('querystring');
 var client = require('redis').createClient();
@@ -32,13 +32,13 @@ var request = function (data) {
                     if (res.length > 0) {
                         result.patterns = validateResponse(res, data.patterns);
                     }
-                    console.log(result);
+                    logger.log(result);
                     client.lpush(data.url, JSON.stringify(result));
                 });
             })
             .on('error', function (err) {
                 result.status = 'error: ' + err.message;
-                console.log(result);
+                logger.warn(result);
                 client.lpush(data.url, JSON.stringify(result));
             });
         req.end();

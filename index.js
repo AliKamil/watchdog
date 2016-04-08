@@ -2,7 +2,7 @@ var settingsManager = require('./settings.js');
 var asyncPolling = require('async-polling');
 var async = require('async');
 var pool = require('./pool.js');
-var logger = require('./logger.js');
+var logger = require('mag')();
 var checker = require('./worker.js');
 var http = require('http');
 var client = require('redis').createClient();
@@ -17,19 +17,20 @@ var polling = asyncPolling(function (end) {
 
 ['run', 'start', 'end', 'schedule', 'stop'].forEach(function (eventName) {
     polling.on(eventName, function () {
-        console.log('lifecycle:', eventName);
+        logger.debug('lifecycle:', eventName);
     });
 });
 
 polling.on('result', function (result) {
-    console.log('result:', result);
+    logger.debug('result:', result);
 });
 
 polling.on('error', function (error) {
-    console.error('error:', error);
+    logger.error('error:', error);
 });
 
 var server = http.createServer(function (req, res) {
+    logger.info('Got request from ' + req.connection.remoteAddress);
     client.keys('*', function (err, result) {
         res.writeHead(200, {"Content-Type": "application/json"});
         var i = 0;
@@ -47,4 +48,5 @@ var server = http.createServer(function (req, res) {
 
 
 polling.run();
-server.listen(669);
+server.listen(settings['server-port']);
+logger.info('Server is listening on port: ' + settings['server-port']);

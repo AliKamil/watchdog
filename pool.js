@@ -1,6 +1,5 @@
 var async = require('async');
-
-
+var logger = require('mag')();
 var Checker;
 var pool = function () {
 };
@@ -11,12 +10,10 @@ pool.init = function (checker) {
 
 pool.probe = function (sites, end) {
     async.each(sites, function (list) {
-        console.log('checking:' + list.url);
+        logger.debug('checking:' + list.url);
         Checker.request(list);
-    }, function () {
-        console.log('async callback fired')
     });
-    return end(null, 'some end');
+    return end();
 };
 
 module.exports = pool;

@@ -1,4 +1,5 @@
 probe-interval: 10000
+server-port: 669
 pages:
   - url: http://www.google.pl
     patterns:
